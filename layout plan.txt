@@ -1,0 +1,39 @@
+built-in display class?
+	pyray instead, seemingly
+
+
+config file for the constants?
+director
+	setup game similar to example program's main
+
+
+actor
+	attributes:
+		gravity modifier (how many frames have to play between each falling object)
+	methods:
+
+	subclasses:
+		player
+			attributes:
+			methods:
+		gems
+			attributes:
+			methods:
+		rocks
+			attributes:
+			methods:
+
+cast (collection of actors, not subclass of actors; think Actor = Card, Cast = Deck)
+	attributes:
+		list of actor instances
+	methods:
+		gravitate all actors down 1
+			make sure player character doesn't get moved down and deleted if it's already on bottom row
+keyboard_input
+
+video_output
+
+things the example program doesn't have that we need:
+	gravity
+		implement in actors? or maybe cast?
+		maybe reverse-engineer point.py for it?
