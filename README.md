@@ -1,7 +1,8 @@
 # Greed
 
 greed; noun
- /grēd/
+ 
+/grēd/
 
  An intense and selfish desire for something, especially wealth, power, food, or resources.
 
