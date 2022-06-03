@@ -1,6 +1,12 @@
 # Greed
 
-"There are old skydivers and bold skydivers, but there are no old, bold skydivers." - Jeff Wuorio
+greed; noun
+ 
+/grēd/
+
+ An intense and selfish desire for something, especially wealth, power, food, or resources.
+
+ "Greed motivated the miner to collect as many gems as possible, while leaving only the rocks for the other miners" 
 
 ---
 
@@ -22,7 +28,7 @@ project folder. Select the main module inside the hilo folder and click the "run
 
 There are some rules to this game and are listed as follows:
 
-- Gems (\*) and rocks (o) randomly appear and fall from the top of the screen.
+- Gems (*) and rocks (o) randomly appear and fall from the top of the screen.
 - The player (#) can move left or right along the bottom of the screen.
 - If the player touches a gem they earn a point.
 - If the player touches a rock they lose a point.
@@ -58,7 +64,9 @@ Python 3.10.4
 
 ---
 
-- Dylan Ruppell (ruppelld@byui.edu) (github: DigitalNTT-Soul): Program design
-- Austin Donovan (iskarr9g@gmail.com) (github: Iskarr): ASCII Parachute Design, Parachute Class, Parachute guy function
-- Matt Pellét (mattpellet@byui.edu) (github: m4j0rCSE): Word list, README, word_list class
-- Larry Brys (bry21010@byui.edu) (github: ljbrys) collaborated with design
+- Dylan Ruppell (ruppelld@byui.edu) (github: DigitalNTT-Soul): TBD
+- Austin Donovan (iskarr9g@gmail.com) (github: Iskarr): TBD
+- Matt Pellét (mattpellet@byui.edu) (github: m4j0rCSE): TBD
+- Larry Brys (bry21010@byui.edu) (github: ljbrys): TBD
+- Ryan Manthey (ryanscom@byui.edu) (github: ): TBD
+- Caleb Barnhart (bar17106@byui.edu) (github: Calebfinn143): TBD
