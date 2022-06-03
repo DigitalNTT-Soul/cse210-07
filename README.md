@@ -1,6 +1,11 @@
 # Greed
 
-"There are old skydivers and bold skydivers, but there are no old, bold skydivers." - Jeff Wuorio
+greed; noun
+ /grēd/
+
+ An intense and selfish desire for something, especially wealth, power, food, or resources.
+
+ "Greed motivated the miner to collect as many gems as possible, while leaving only the rocks for the other miners" 
 
 ---
 
@@ -22,7 +27,7 @@ project folder. Select the main module inside the hilo folder and click the "run
 
 There are some rules to this game and are listed as follows:
 
-- Gems (\*) and rocks (o) randomly appear and fall from the top of the screen.
+- Gems (*) and rocks (o) randomly appear and fall from the top of the screen.
 - The player (#) can move left or right along the bottom of the screen.
 - If the player touches a gem they earn a point.
 - If the player touches a rock they lose a point.
