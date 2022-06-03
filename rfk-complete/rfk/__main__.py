@@ -58,7 +58,7 @@ def main():
         messages = data.splitlines()
 
     for n in range(DEFAULT_ARTIFACTS):
-        # text = chr(random.randint(33, 126))
+        text = chr(random.randint(33, 126))
         message = messages[n]
 
         x = random.randint(1, COLS - 1)
