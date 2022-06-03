@@ -1,10 +1,10 @@
-# Jumper
+# Greed
 
 "There are old skydivers and bold skydivers, but there are no old, bold skydivers." - Jeff Wuorio
 
 ---
 
-Jumper is a game in which the player seeks to solve a puzzle by guessing the letters of a secret word one at a time. Guess the correct letters of the secret word before all of the lines of the parachute are cut!
+Greed is a game in which the player seeks to gather as many falling gems as possible. The game continues as long as the player wants more!
 
 ## Getting Started
 
@@ -14,7 +14,7 @@ Make sure you have Python 3.10.4 or newer installed and running on your machine.
 browse to the project's root folder. Start the program by running the following command.
 
 ```
-python3 jumper
+python3 greed
 ```
 
 You can also run the program from an IDE like Visual Studio Code. Start your IDE and open the
@@ -22,15 +22,14 @@ project folder. Select the main module inside the hilo folder and click the "run
 
 There are some rules to this game and are listed as follows:
 
-- The secret word is randomly chosen from a list.
-- The player guesses a letter in the puzzle.
-- If the guess is correct, the letter is revealed.
-- The player guesses if the next one will be higher or lower.
-- If the guess is incorrect, a line is cut on the player's parachute
-- If the puzzle is solved the game is over. You landed safely on the ground!
-- If the player has no more parachute, well, the game is over. Its a pretty long way to the ground...
+- Gems (\*) and rocks (o) randomly appear and fall from the top of the screen.
+- The player (#) can move left or right along the bottom of the screen.
+- If the player touches a gem they earn a point.
+- If the player touches a rock they lose a point.
+- Gems and rocks are removed when the player touches them.
+- The game continues until the player closes the window.
 
-The goal of the game is to guess the secret word before you run out of parachute.
+The goal of the game is to collect as many falling gems as possible.
 
 ## Project Structure
 
@@ -38,7 +37,7 @@ The goal of the game is to guess the secret word before you run out of parachute
 
 ```
 root                    (project root folder)
-+-- jumper              (source code for game)
++-- Greed              (source code for game)
   +-- game              (specific classes)
     +-- director.py     (director class script)
     +-- rules.py        (rules class script)
