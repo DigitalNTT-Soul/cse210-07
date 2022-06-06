@@ -42,14 +42,16 @@ def main():
     
     # create the robot
     x = int(MAX_X / 2)
-    y = 580
+    y = int(MAX_Y / 2)
     position = Point(x, y)
+    player_y = int(MAX_Y / -40)
+    player_position = Point(x, player_y)
 
     robot = Actor()
     robot.set_text("#")
     robot.set_font_size(FONT_SIZE)
     robot.set_color(WHITE)
-    robot.set_position(position)
+    robot.set_position(player_position)
     cast.add_actor("robots", robot)
     
     # create the artifacts
