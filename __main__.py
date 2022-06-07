@@ -74,7 +74,7 @@ def main():
         artifact.set_font_size(FONT_SIZE)
         artifact.set_color(color)
         artifact.set_position(position)
-        cast.add_actor("artifacts", artifact)
+        cast.add_actor("rocks", artifact)
     
     # start the game
     keyboard_service = KeyboardService(CELL_SIZE)
