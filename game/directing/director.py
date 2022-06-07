@@ -82,9 +82,9 @@ class Director:
 
         if not self._gravity_frame: # triggers gravity effects only when gravity frame resets to 0
             for actor in cast.get_all_actors():
-                # insert an if-statement here that makes sure players don't get pushed through floor and deleted
-                actor.set_velocity(self._gravity_vector)
-                actor.move_next(max_x, max_y)
+                if not (actor is player and player.get_position().get_y() == max_y):
+                    actor.set_velocity(self._gravity_vector)
+                    actor.move_next(max_x, max_y) 
         
 
         # delete actors if they pass through the bottom of the screen
