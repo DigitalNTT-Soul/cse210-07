@@ -37,3 +37,22 @@ things the example program doesn't have that we need:
 	gravity
 		implement in actors? or maybe cast?
 		maybe reverse-engineer point.py for it?
+
+###################
+# Gameplay stream #
+###################
+Fetch dimensions of game window
+Generate Game window
+generate Player Character
+Place Player Character at bottom center of screen (maybe a cell or two above that, to show a sort of short, playful/comical fall?)
+generate score banner
+Place Score Banner in top left corner of screen
+
+gameplay loop
+	if !(frame_count %= self.gravity_modifier):
+		# do gravity stuff
+		# delete gems and rocks that have fallen below the screen
+		# Generate 1-3 Gems/Stones from the top of the screen
+
+	# check keyboard inputs
+	# apply relevant player velocity changes based on keyboard inputs
