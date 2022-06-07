@@ -3,6 +3,7 @@
 import os
 import random
 
+
 from config import Config
 
 from game.casting.actor import Actor
