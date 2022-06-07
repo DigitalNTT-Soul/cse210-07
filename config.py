@@ -3,7 +3,7 @@
 class Config:
     def __init__(self):
         self.__target_framerate = 12
-        self.__gravity_ticks_per_second = 4
+        self.__gravity_ticks_per_second = 2
         self.__max_width = 900
         self.__max_height = 600
         self.__cell_size = 15
