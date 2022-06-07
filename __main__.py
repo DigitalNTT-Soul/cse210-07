@@ -57,7 +57,7 @@ def main():
     
     # create the artifacts
     for n in range(DEFAULT_ARTIFACTS):
-        text = chr(random.randint(33, 126))
+        # text = chr(random.randint(33, 126))
 
         x = random.randint(1, COLS - 1)
         y = random.randint(1, ROWS - 1)
