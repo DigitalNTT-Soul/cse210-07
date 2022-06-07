@@ -20,7 +20,7 @@ class Director:
         self._config = Config()
         self._keyboard_service = keyboard_service
         self._video_service = video_service
-        self._gravity_vector = Point(0,1)
+        self._gravity_vector = Point(0,self._config.get_cell_size())
         self._gravity_speed = self._config.get_gravity_frames_per_tick()
         self._gravity_frame = 0
         
