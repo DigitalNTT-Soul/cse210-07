@@ -1,3 +1,5 @@
+from game.shared.point import Point
+from config import Config
 class Director:
     """A person who directs the game. 
     
@@ -15,8 +17,12 @@ class Director:
             keyboard_service (KeyboardService): An instance of KeyboardService.
             video_service (VideoService): An instance of VideoService.
         """
+        self._config = Config()
         self._keyboard_service = keyboard_service
         self._video_service = video_service
+        self._gravity_vector = Point(0,1)
+        self._gravity_speed = self._config.get_gravity_frames_per_tick()
+        self._gravity_frame = 0
         
     def start_game(self, cast):
         """Starts the game using the given cast. Runs the main game loop.
@@ -32,23 +38,23 @@ class Director:
         self._video_service.close_window()
 
     def _get_inputs(self, cast):
-        """Gets directional input from the keyboard and applies it to the robot.
+        """Gets directional input from the keyboard and applies it to the player.
         
         Args:
             cast (Cast): The cast of actors.
         """
-        robot = cast.get_first_actor("robots")
+        player = cast.get_first_actor("players")
         velocity = self._keyboard_service.get_direction()
-        robot.set_velocity(velocity)        
+        player.set_velocity(velocity)        
 
     def _do_updates(self, cast):
-        """Updates the robot's position and resolves any collisions with artifacts.
+        """Updates the player's position and resolves any collisions with artifacts.
         
         Args:
             cast (Cast): The cast of actors.
         """
         banner = cast.get_first_actor("banners")
-        robot = cast.get_first_actor("robots")
+        player = cast.get_first_actor("players")
         artifacts = cast.get_actors("artifacts")
         rocks = cast.get_actors("rocks")
         gems = cast.get_actors("gems")
@@ -56,20 +62,34 @@ class Director:
         banner.set_text("")
         max_x = self._video_service.get_width()
         max_y = self._video_service.get_height()
-        robot.move_next(max_x, max_y)
+        player.move_next(max_x, max_y)
         
         # for artifact in artifacts:
-        #     if robot.get_position().equals(artifact.get_position()):
+        #     if player.get_position().equals(artifact.get_position()):
         #         message = artifact.get_message()
         #         banner.set_text(message)
                 
         for rock in rocks:
-            if robot.get_position().equals(rock.get_position()):
+            if player.get_position().equals(rock.get_position()):
                 print("collision")
         
         for gem in gems:
-            if robot.get_position().equals(gem.get_position()):
+            if player.get_position().equals(gem.get_position()):
                 print("collision")
+        
+        # implementing gravity here
+        self._gravity_frame = (self._gravity_frame + 1) % self._gravity_speed
+
+        if self._gravity_frame: # triggers gravity effects only when gravity frame resets to 0
+            for actor in cast.get_all_actors():
+                # insert an if-statement here that makes sure players don't get pushed through floor and deleted
+                actor.set_velocity(self._gravity_vector)
+                actor.move_next(max_x, max_y)
+        
+
+        # delete actors if they pass through the bottom of the screen
+
+        # add 1-3 actors at the top of the screen
         
     def _do_outputs(self, cast):
         """Draws the actors on the screen.
