@@ -43,19 +43,19 @@ def main():
     banner.set_position(Point(CELL_SIZE, 0))
     cast.add_actor("banners", banner)
     
-    # create the robot
+    # create the player
     x = int(MAX_X / 2)
     y = int(MAX_Y / 2)
     position = Point(x, y)
     player_y = int(MAX_Y / -40)
     player_position = Point(x, player_y)
 
-    robot = Actor()
-    robot.set_text("#")
-    robot.set_font_size(FONT_SIZE)
-    robot.set_color(WHITE)
-    robot.set_position(player_position)
-    cast.add_actor("robots", robot)
+    player = Actor()
+    player.set_text("#")
+    player.set_font_size(FONT_SIZE)
+    player.set_color(WHITE)
+    player.set_position(player_position)
+    cast.add_actor("players", player)
     
     # create the artifacts
     for n in range(DEFAULT_ARTIFACTS):
