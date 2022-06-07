@@ -3,6 +3,8 @@
 import os
 import random
 
+from config import Config
+
 from game.casting.actor import Actor
 from game.casting.artifact import Artifact
 from game.casting.cast import Cast
@@ -15,15 +17,15 @@ from game.services.video_service import VideoService
 from game.shared.color import Color
 from game.shared.point import Point
 
-
-FRAME_RATE = 12
-MAX_X = 900
-MAX_Y = 600
-CELL_SIZE = 15
-FONT_SIZE = 15
-COLS = 60
-ROWS = 40
-CAPTION = "Robot Finds Kitten"
+config = Config()
+FRAME_RATE = config.get_target_framerate()
+MAX_X = config.get_max_width()
+MAX_Y = config.get_max_height()
+CELL_SIZE = config.get_cell_size()
+FONT_SIZE = CELL_SIZE
+COLS = MAX_X / CELL_SIZE
+ROWS = MAX_Y / CELL_SIZE
+CAPTION = "Greed"
 WHITE = Color(255, 255, 255)
 DEFAULT_ARTIFACTS = 40
 
