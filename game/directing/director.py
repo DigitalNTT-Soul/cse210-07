@@ -80,7 +80,7 @@ class Director:
         # implementing gravity here
         self._gravity_frame = (self._gravity_frame + 1) % self._gravity_speed
 
-        if self._gravity_frame: # triggers gravity effects only when gravity frame resets to 0
+        if not self._gravity_frame: # triggers gravity effects only when gravity frame resets to 0
             for actor in cast.get_all_actors():
                 # insert an if-statement here that makes sure players don't get pushed through floor and deleted
                 actor.set_velocity(self._gravity_vector)
