@@ -16,13 +16,13 @@ class Actor:
         _velocity (Point): The speed and direction.
     """
 
-    def __init__(self):
+    def __init__(self, text: str = "", font_size: int = 15, color: Color = Color(255, 255, 255), position: Point = Point(0, 0), velocity: Point = Point(0, 0)):
         """Constructs a new Actor."""
-        self._text = ""
-        self._font_size = 15
-        self._color = Color(255, 255, 255)
-        self._position = Point(0, 0)
-        self._velocity = Point(0, 0)
+        self._text = text
+        self._font_size = font_size
+        self._color = color
+        self._position = position
+        self._velocity = velocity
 
     def get_color(self):
         """Gets the actor's color as a tuple of three ints (r, g, b).

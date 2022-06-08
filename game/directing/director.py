@@ -1,7 +1,17 @@
-from game.shared.point import Point
 from config import Config
-import pyray
-import random
+from game.services.keyboard_service import KeyboardService
+from game.services.video_service import VideoService
+
+from game.casting.cast import Cast
+from game.casting.actor import Actor
+from game.casting.debris import Debris
+
+from game.shared.color import Color
+from game.shared.point import Point 
+
+from random import randint
+
+
 class Director:
     """A person who directs the game. 
     
@@ -12,27 +22,40 @@ class Director:
         _video_service (VideoService): For providing video output.
     """
 
-    def __init__(self, keyboard_service, video_service):
+    def __init__(self):
         """Constructs a new Director using the specified keyboard and video services.
         
         Args:
             keyboard_service (KeyboardService): An instance of KeyboardService.
             video_service (VideoService): An instance of VideoService.
         """
+        
         self._config = Config()
-        self._keyboard_service = keyboard_service
-        self._video_service = video_service
-        self._gravity_vector = Point(0,self._config.get_cell_size())
-        self._gravity_speed = self._config.get_gravity_frames_per_tick()
-        self._gravity_frame = 0
-        self._total_score = 0
 
-    def start_game(self, cast):
+        self._keyboard_service = KeyboardService(self._config.get_cell_size())
+        self._video_service = VideoService(
+            self._config.get_window_title(),
+            self._config.get_max_width(),
+            self._config.get_max_height(),
+            self._config.get_cell_size(),
+            self._config.get_target_framerate()
+        )
+        
+        self._gravity_vector = Point(0,self._config.get_cell_size())
+        self._gravity_frame = 0
+
+        self._score = 0
+
+    def start_game(self):
         """Starts the game using the given cast. Runs the main game loop.
 
         Args:
             cast (Cast): The cast of actors.
         """
+        cast = Cast()
+        cast.add_actor("player",Actor("#", self._config.get_cell_size(),Color(255,255,255),Point(int(self._config.get_max_width() / 2), int(self._config.get_max_height() - self._config.get_cell_size()))))
+        cast.add_actor("banner",Actor("",self._config.get_cell_size(), Color(255,255,255),Point(self._config.get_cell_size(),0)))
+
         self._video_service.open_window()
         while self._video_service.is_window_open():
             self._get_inputs(cast)
@@ -46,7 +69,7 @@ class Director:
         Args:
             cast (Cast): The cast of actors.
         """
-        player = cast.get_first_actor("players")
+        player = cast.get_first_actor("player")
         velocity = self._keyboard_service.get_direction()
         player.set_velocity(velocity)        
 
@@ -56,47 +79,43 @@ class Director:
         Args:
             cast (Cast): The cast of actors.
         """
-        banner = cast.get_first_actor("banners")
-        player = cast.get_first_actor("players")
-        artifacts = cast.get_actors("artifacts")
-        rocks = cast.get_actors("rocks")
-        gems = cast.get_actors("gems")
+        banner = cast.get_first_actor("banner")
+        player = cast.get_first_actor("player")
+        debris = cast.get_actors("debris")
 
         banner.set_text("")
-        max_x = self._video_service.get_width()
-        max_y = self._video_service.get_height()
-        player.move_next(max_x, max_y)
+        player.move_next(self._config.get_max_width(), self._config.get_max_height())
         
         # for artifact in artifacts:
         #     if player.get_position().equals(artifact.get_position()):
         #         message = artifact.get_message()
         #         banner.set_text(message)
-                
-        for rock in rocks:
-            if player.get_position().equals(rock.get_position()):
-                cast.remove_actor("rocks", rock)
-                self._total_score = self._total_score -1
-                print("-1")
-                if self._total_score < 0:
-                    self._total_score = 0
-                
-        for gem in gems:
-            if player.get_position().equals(gem.get_position()):
-                print("+1")
-                cast.remove_actor("gems", gem)
-                self._total_score = self.total_score +1 
         
         # implementing gravity here
-        self._gravity_frame = (self._gravity_frame + 1) % self._gravity_speed
+        self._gravity_frame = (self._gravity_frame + 1) % self._config.get_gravity_frames_per_tick()
 
-        if not self._gravity_frame: # triggers gravity effects only when gravity frame resets to 0
-            for actor in cast.get_all_actors():
-                if actor.get_position().get_y() == max_y - self._config.get_cell_size():
-                        cast.remove_actor("debris", actor)
-                elif not (actor is player and player.get_position().get_y() == max_y - self._config.get_cell_size()):
-                    actor.set_velocity(self._gravity_vector)
-                    actor.move_next(max_x, max_y) 
-                    
+        for actor in cast.get_all_actors():
+            if actor is not player and player.get_position().equals(actor.get_position()):
+                self._score += actor.get_value()
+                print(actor.get_value())
+                cast.remove_actor("debris", actor)
+
+            if not self._gravity_frame:
+                # delete/garbage-collect actors that go under the floor
+                if actor.get_position().get_y() == self._config.get_max_height() - self._config.get_cell_size():
+                    cast.remove_actor("debris", actor)
+                else:
+                    actor.set_velocity(Point(0, self._config.get_gravity_frames_per_tick()))
+                    actor.move_next(self._config.get_max_width(), self._config.get_max_height())
+
+        if not self._gravity_frame:
+            for i in range(randint(1,3)):
+                if randint(0,1):
+                    cast.add_actor("debris", Debris(1,"*", Point(randint(0,self._config.get_column_count() - 1),0)))
+                else:
+                    cast.add_actor("debris", Debris(-1,"o", Point(randint(0,self._config.get_column_count() - 1),0)))
+
+        banner.set_text(f"S C O R E : {self._score}")        
 
         # delete actors if they pass through the bottom of the screen
 
