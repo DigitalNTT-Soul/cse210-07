@@ -95,7 +95,7 @@ class Director:
         self._gravity_frame = (self._gravity_frame + 1) % self._config.get_gravity_frames_per_tick()
 
         for actor in cast.get_all_actors():
-            if actor is not player and player.get_position().equals(actor.get_position()):
+            if actor is not player and actor is not banner and player.get_position().equals(actor.get_position()):
                 self._score += actor.get_value()
                 print(actor.get_value())
                 cast.remove_actor("debris", actor)
@@ -104,16 +104,16 @@ class Director:
                 # delete/garbage-collect actors that go under the floor
                 if actor is not player and actor.get_position().get_y() == self._config.get_max_height() - self._config.get_cell_size():
                     cast.remove_actor("debris", actor)
-                else:
+                elif actor is not banner:
                     actor.set_velocity(Point(0, self._config.get_gravity_frames_per_tick()))
                     actor.move_next(self._config.get_max_width(), self._config.get_max_height())
 
         if not self._gravity_frame:
             for i in range(randint(1,3)):
                 if randint(0,1):
-                    cast.add_actor("debris", Debris(1,"*", Point(randint(0,self._config.get_column_count() - 1),0)))
+                    cast.add_actor("debris", Debris(1,"*", Point(randint(0,self._config.get_column_count() - 1),0).scale(self._config.get_cell_size())))
                 else:
-                    cast.add_actor("debris", Debris(-1,"o", Point(randint(0,self._config.get_column_count() - 1),0)))
+                    cast.add_actor("debris", Debris(-1,"o", Point(randint(0,self._config.get_column_count() - 1),0).scale(self._config.get_cell_size())))
 
         banner.set_text(f"S C O R E : {self._score}")        
 
