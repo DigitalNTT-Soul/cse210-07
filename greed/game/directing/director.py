@@ -105,7 +105,7 @@ class Director:
                 if actor is not player and actor.get_position().get_y() == self._config.get_max_height() - self._config.get_cell_size():
                     cast.remove_actor("debris", actor)
                 elif actor is not banner:
-                    actor.set_velocity(Point(0, self._config.get_gravity_frames_per_tick()))
+                    actor.set_velocity(Point(0, self._config.get_cell_size()))
                     actor.move_next(self._config.get_max_width(), self._config.get_max_height())
 
         if not self._gravity_frame:
