@@ -1,5 +1,8 @@
 import pyray
 from game.shared.point import Point
+from config import Config
+jump_height = Config().get_jump_height()
+
 
 
 class KeyboardService:
@@ -36,7 +39,7 @@ class KeyboardService:
             dx = 1
         
         if pyray.is_key_down(pyray.KEY_UP):
-            dy = -1
+            dy = -jump_height
         
         if pyray.is_key_down(pyray.KEY_DOWN):
             dy = 1
