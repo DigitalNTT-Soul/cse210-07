@@ -2,7 +2,7 @@
 
 class Config:
     def __init__(self):
-        self.__target_framerate = 12
+        self.__target_framerate = 24
         self.__gravity_ticks_per_second = 2
         self.__max_width = 900
         self.__max_height = 600
@@ -24,13 +24,13 @@ class Config:
         return self.__max_width
 
     def get_column_count(self):
-        return self.__max_width / self.__cell_size
+        return int(self.__max_width / self.__cell_size)
 
     def get_max_height(self):
         return self.__max_height    
     
     def get_row_count(self):
-        return self.__max_height / self.__cell_size
+        return int(self.__max_height / self.__cell_size)
     
     def get_window_title(self):
         return self.__window_title
