@@ -93,5 +93,3 @@ Python 3.10.4
 * Ryan Manthey (ryanscom@byui.edu) (github: ryanscom):
   - First Draft of deleting objects when they pass through the floor
   - advised on other code
-* Caleb Barnhart (bar17106@byui.edu) (github: Calebfinn143):
-  - 
