@@ -20,6 +20,10 @@ Make sure you have Python 3.10.4 or newer installed and running on your machine.
 browse to the project's root folder. Start the program by running the following command.
 
 ```
+pip install raylib
+```
+
+```
 python3 greed
 ```
 
@@ -42,16 +46,24 @@ The goal of the game is to collect as many falling gems as possible.
 ---
 
 ```
-root                    (project root folder)
-+-- Greed              (source code for game)
-  +-- game              (specific classes)
-    +-- director.py     (director class script)
-    +-- rules.py        (rules class script)
-    +-- ui.py           (ui class script)
-    +-- word_list.py    (word_list class script)
-    +-- word_list.txt   (raw text file of words, for easy editing)
-  +-- __main__.py       (program entry point)
-+-- README.md           (general info)
+root                          (project root folder)
++-- Greed                     (source code for game)
+  +-- game                    (specific classes)
+    +-- directing             
+      +-- director.py         (Director class)
+    +-- casting               
+      +-- cast.py             (Cast class)
+      +-- actor.py            (Actor class)
+      +-- debris.py           (Debris class)
+    +-- services              
+      +-- keyboard_service.py (Keyboard services class)
+      +-- video_service.py    (video_service class)
+    +-- shared                
+      +-- point.py            (Point class)
+      +-- color.py            (Color class)
+  +-- __main__.py             (program entry point)
+  +-- config.py               (config class used to store config data for various game files to access)
++-- README.md                 (general info)
 ```
 
 ## Required Technologies
@@ -64,9 +76,22 @@ Python 3.10.4
 
 ---
 
-- Dylan Ruppell (ruppelld@byui.edu) (github: DigitalNTT-Soul): TBD
-- Austin Donovan (iskarr9g@gmail.com) (github: Iskarr): TBD
-- Matt Pellét (mattpellet@byui.edu) (github: m4j0rCSE): TBD
-- Larry Brys (bry21010@byui.edu) (github: ljbrys): TBD
-- Ryan Manthey (ryanscom@byui.edu) (github: ): TBD
-- Caleb Barnhart (bar17106@byui.edu) (github: Calebfinn143): TBD
+* Dylan Ruppell (ruppelld@byui.edu) (github: DigitalNTT-Soul):
+  - Basic gravity (tunable via config, no floor yet for the player)
+  - external config file
+  - advised on other code
+* Austin Donovan (iskarr9g@gmail.com) (github: Iskarr):
+  - First draft of scoring system
+  - First draft of Gem and Rock classes that were later merged into Debris class
+  - advised on other code
+* Matt Pellét (mattpellet@byui.edu) (github: m4j0rCSE):
+  - Jump command
+  - advised on other code
+* Larry Brys (bry21010@byui.edu) (github: ljbrys):
+  - Floor for player to stand on. (i.e. gravity can't push him through)
+  - advised on other code
+* Ryan Manthey (ryanscom@byui.edu) (github: ryanscom):
+  - First Draft of deleting objects when they pass through the floor
+  - advised on other code
+* Caleb Barnhart (bar17106@byui.edu) (github: Calebfinn143):
+  - 
