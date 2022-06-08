@@ -9,6 +9,7 @@ class Config:
         self.__cell_size = 15
         self.__window_title = "Greed"
         self.__default_NPC_count = 40
+        self.__jump_height = 3 # number of cells, not pixels
     
     def get_target_framerate(self):
         return self.__target_framerate
@@ -37,4 +38,5 @@ class Config:
     def get_default_NPC_count(self):
         return self.__default_NPC_count
 
-    
+    def get_jump_height(self):
+        return self.__jump_height
