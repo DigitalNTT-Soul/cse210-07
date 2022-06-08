@@ -1,5 +1,7 @@
 from game.shared.point import Point
 from config import Config
+import pyray
+import random
 class Director:
     """A person who directs the game. 
     
@@ -23,7 +25,8 @@ class Director:
         self._gravity_vector = Point(0,self._config.get_cell_size())
         self._gravity_speed = self._config.get_gravity_frames_per_tick()
         self._gravity_frame = 0
-        
+        self._total_score = 0
+
     def start_game(self, cast):
         """Starts the game using the given cast. Runs the main game loop.
 
@@ -71,11 +74,17 @@ class Director:
                 
         for rock in rocks:
             if player.get_position().equals(rock.get_position()):
-                print("collision")
-        
+                cast.remove_actor("rocks", rock)
+                self._total_score = self._total_score -1
+                print("-1")
+                if self._total_score < 0:
+                    self._total_score = 0
+                
         for gem in gems:
             if player.get_position().equals(gem.get_position()):
-                print("collision")
+                print("+1")
+                cast.remove_actor("gems", gem)
+                self._total_score = self.total_score +1 
         
         # implementing gravity here
         self._gravity_frame = (self._gravity_frame + 1) % self._gravity_speed
