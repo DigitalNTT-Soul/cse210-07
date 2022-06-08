@@ -1,8 +1,5 @@
 import pyray
-from config import Config
 
-
-config = Config()
 
 class VideoService:
     """Outputs the game state. The responsibility of the class of objects is to draw the game state 
@@ -46,6 +43,7 @@ class VideoService:
         y = actor.get_position().get_y()
         font_size = actor.get_font_size()
         color = actor.get_color().to_tuple()
+        print(f"{text} {x} {y} {font_size}") #maybe color, too?
         pyray.draw_text(text, x, y, font_size, color)
         
     def draw_actors(self, actors):

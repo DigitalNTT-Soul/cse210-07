@@ -14,7 +14,7 @@ class Config:
         return self.__target_framerate
 
     def get_gravity_frames_per_tick(self):
-        return self.__target_framerate / self.__gravity_ticks_per_second
+        return int(self.__target_framerate / self.__gravity_ticks_per_second)
     
     def get_cell_size(self):
         return self.__cell_size
