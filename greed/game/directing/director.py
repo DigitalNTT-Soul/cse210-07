@@ -102,7 +102,7 @@ class Director:
 
             if not self._gravity_frame:
                 # delete/garbage-collect actors that go under the floor
-                if actor.get_position().get_y() == self._config.get_max_height() - self._config.get_cell_size():
+                if actor is not player and actor.get_position().get_y() == self._config.get_max_height() - self._config.get_cell_size():
                     cast.remove_actor("debris", actor)
                 else:
                     actor.set_velocity(Point(0, self._config.get_gravity_frames_per_tick()))
