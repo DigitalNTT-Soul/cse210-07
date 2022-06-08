@@ -2,7 +2,7 @@
 
 class Config:
     def __init__(self):
-        self.__target_framerate = 24
+        self.__target_framerate = 24 # controls speed of player movement, and realistically not much else
         self.__gravity_ticks_per_second = 2
         self.__max_width = 900
         self.__max_height = 600
