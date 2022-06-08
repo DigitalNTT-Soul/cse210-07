@@ -81,7 +81,6 @@ class Director:
         """
         banner = cast.get_first_actor("banner")
         player = cast.get_first_actor("player")
-        debris = cast.get_actors("debris")
 
         #jump 
         if (player.get_velocity().get_y() == -self._config.get_cell_size() * self._config.get_jump_height() and
@@ -92,18 +91,12 @@ class Director:
         banner.set_text("")
         player.move_next(self._config.get_max_width(), self._config.get_max_height())
         
-        # for artifact in artifacts:
-        #     if player.get_position().equals(artifact.get_position()):
-        #         message = artifact.get_message()
-        #         banner.set_text(message)
-        
         # implementing gravity here
         self._gravity_frame = (self._gravity_frame + 1) % self._config.get_gravity_frames_per_tick()
 
         for actor in cast.get_all_actors():
             if isinstance(actor, Debris) and player.get_position().equals(actor.get_position()):
                 self._score += actor.get_value()
-                print(actor.get_value())
                 cast.remove_actor("debris", actor)
 
             if not self._gravity_frame:
@@ -123,10 +116,6 @@ class Director:
                     cast.add_actor("debris", Debris(-1,"o", Point(randint(0,self._config.get_column_count() - 1),0).scale(self._config.get_cell_size())))
 
         banner.set_text(f"S C O R E : {self._score}")        
-
-        # delete actors if they pass through the bottom of the screen
-
-        # add 1-3 actors at the top of the screen
         
     def _do_outputs(self, cast):
         """Draws the actors on the screen.
