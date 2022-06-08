@@ -83,6 +83,13 @@ class Director:
         player = cast.get_first_actor("player")
         debris = cast.get_actors("debris")
 
+        #jump 
+        if player.get_velocity().get_y() == -self._config.get_cell_size():
+            if player.get_position().get_y() == self._config.get_max_height() - self._config.get_cell_size():
+                player.set_velocity(player.get_velocity().set_y(-self._config.get_jump_height * self._config.get_cell_size()))
+        else:
+            player.set_velocity(player.get_velocity().set_y(0))
+        
         banner.set_text("")
         player.move_next(self._config.get_max_width(), self._config.get_max_height())
         
