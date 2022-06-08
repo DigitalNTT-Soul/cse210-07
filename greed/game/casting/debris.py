@@ -8,6 +8,11 @@ class Debris(Actor):
 
         super().__init__()
         self._value = value
+        self._text = text
+        self._position = position
+        self._velocity = velocity
+        self._font_size = font_size
+        self._color = color
     
     def get_value(self):
         return self._value
