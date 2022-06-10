@@ -26,8 +26,14 @@ class Director:
         """Constructs a new Director using the specified keyboard and video services.
         
         Args:
-            keyboard_service (KeyboardService): An instance of KeyboardService.
-            video_service (VideoService): An instance of VideoService.
+            _config (Config): An instance of config. (configuration file)
+            _keyboard_service (KeyboardService): An instance of KeyboardService.
+            _video_service (VideoService): An instance of VideoService.
+            _gravity_vector (Point): And instance of point. 
+            _gravity_frame (): The gravity frame value
+            _score (int): The players score.
+
+
         """
         
         self._config = Config()
@@ -69,12 +75,12 @@ class Director:
         Args:
             cast (Cast): The cast of actors.
         """
-        player = cast.get_first_actor("player")
-        velocity = self._keyboard_service.get_direction()
+        player = cast.get_first_actor("player") # The icon object movable by the player.
+        velocity = self._keyboard_service.get_direction() # The direction and speed of the player
         player.set_velocity(velocity)        
 
     def _do_updates(self, cast):
-        """Updates the player's position and resolves any collisions with artifacts.
+        """Updates the player's position and resolves any collisions with artifacts. Updates the player's score.
         
         Args:
             cast (Cast): The cast of actors.
